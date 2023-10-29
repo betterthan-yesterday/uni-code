@@ -26,10 +26,40 @@
  *
  */
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Q3_TransposeMatrix {
     /* place your subroutine code here */
+    static String[] transpose(String[] arr) {
+        String[] transpose = new String[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            
+        }
+
+        return transpose;
+    }
 
     public static void main(String[] args) {
         /* place your code to run your subroutine here */
+        Scanner scanner = new Scanner(System.in);
+        String[] arr = new String[1000];
+        int counter = 0;
+
+        System.out.println("Enter rows of matrix on different lines, with one space in between numbers, type 'end' to end: ");
+        do {
+            String input = scanner.nextLine();
+            if (input.equals("end")) break;
+            arr[counter] = input;
+            counter++;
+        } while (true);
+
+        String[] arr_copy = new String[counter];
+        System.arraycopy(arr, 0, arr_copy, 0, counter);
+
+        String[] tran_mat = transpose(arr_copy);
+        for (int i = 0; i < tran_mat.length; i++)
+            System.out.println(tran_mat[i]);
     }
 }
