@@ -21,7 +21,6 @@
 
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class Q2_TwoSum {
     /* place your subroutine code here */

@@ -32,12 +32,19 @@ import java.util.Scanner;
 public class Q3_TransposeMatrix {
     /* place your subroutine code here */
     static String[] transpose(String[] arr) {
-        String[] transpose = new String[arr.length];
+        int num_column = arr[0].split(" ").length;
+        String[] transpose = new String[num_column];
 
-        for (int i = 0; i < arr.length; i++) {
-            
+        for (int column = 0; column < num_column; column++) {
+
+            String new_row = "";
+            for (int old_row = 0; old_row < arr.length; old_row++) {
+                new_row += arr[old_row].split(" ")[column];
+                new_row += " ";
+            }
+            transpose[column] = new_row;
         }
-
+        
         return transpose;
     }
 

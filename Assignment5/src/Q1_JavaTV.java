@@ -35,52 +35,52 @@ public class Q1_JavaTV {
     public void setChannel(int newChannel) {
         System.out.println("Set Channel to: " + newChannel + ".");
         /* place your code here */
-        if (newChannel >= 1 && newChannel <= 120) {
-            if (on)
-                channel = newChannel;
-        }
+        if (newChannel >= 1 && newChannel <= 120 && on)
+            channel = newChannel;
     }
 
     // (5 marks)
     public void setVolume(int newVolumeLevel) {
         System.out.println("Set Volume to: " + newVolumeLevel + ".");
         /* place your code here */
-        if (newVolumeLevel > 1 && newVolumeLevel < 120) {
-            if (on)
-                volumeLevel = newVolumeLevel;
-        }
+        if (newVolumeLevel >= 1 && newVolumeLevel <= 7 && on)
+            volumeLevel = newVolumeLevel;
     }
 
     // (5 marks)
     public void channelUp() {
         System.out.println("Channel Up.");
         /* place your code here */
-        if (channel++ > 120)
-            channel--;
+        if (on)
+            if (++channel > 120)
+                channel--;
     }
 
     // (5 marks)
     public void channelDown() {
         System.out.println("Channel Down.");
         /* place your code here */
-        if (channel-- < 1)
-            channel++;
+        if (on)
+            if (--channel < 1)
+                channel++;
     }
 
     // (5 marks)
     public void volumeUp() {
         System.out.println("Volume Up.");
         /* place your code here */
-        if (volumeLevel++ > 7)
-            volumeLevel--;
+        if (on)
+            if (++volumeLevel > 7)
+                volumeLevel--;
     }
 
     // (5 marks)
     public void volumeDown() {
         System.out.println("Volume Down.");
         /* place your code here */
-        if (volumeLevel-- < 1)
-            volumeLevel++;
+        if (on)
+            if (--volumeLevel < 1)
+                volumeLevel++;
     }
 
     public String getTVStatus() {
@@ -105,9 +105,22 @@ public class Q1_JavaTV {
         System.out.println(my_tv.getTVStatus());
         my_tv.turnOn();
         System.out.println(my_tv.getTVStatus());
+        my_tv.channelDown();
+        System.out.println(my_tv.getTVStatus());
+        my_tv.volumeDown();
+        System.out.println(my_tv.getTVStatus());
+        my_tv.setChannel(119);
+        my_tv.setVolume(6);
+        System.out.println(my_tv.getTVStatus());
         my_tv.channelUp();
         System.out.println(my_tv.getTVStatus());
         my_tv.volumeUp();
+        System.out.println(my_tv.getTVStatus());
+        my_tv.turnOff();
+        System.out.println(my_tv.getTVStatus());
+        my_tv.setChannel(1);
+        System.out.println(my_tv.getTVStatus());
+        my_tv.turnOn();
         System.out.println(my_tv.getTVStatus());
     }
 }
