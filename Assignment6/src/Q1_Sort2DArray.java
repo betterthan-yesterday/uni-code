@@ -67,7 +67,7 @@ public class Q1_Sort2DArray {
         double[][] array = new double[100][100];
         int row_count = 0;
 
-        System.out.println("Enter whole row one at a time with spaces between numbers; type 'end' to end: ");
+        System.out.println("Enter whole row one at a time with one space between numbers; type 'end' to end: ");
         do {
             String input = scanner.nextLine();
             if (input.equals("end")) break;
