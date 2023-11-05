@@ -26,12 +26,13 @@
  *
  */
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Q3_RemoveDuplicates {
     /* place your subroutine code here */
-    static void filter(int[] arr) {
+    static ArrayList<Integer> filter(int[] arr) {
 
         boolean sorted = false;
         while (!sorted) {
@@ -40,7 +41,6 @@ public class Q3_RemoveDuplicates {
             for (int i = 0; i < arr.length-1; i++) {
                 if (arr[i] < arr[i+1]) {
                     for (int j = i+1; j < arr.length; j++) {
-                        System.out.println(Arrays.toString(arr));
                         if (arr[j] <= arr[i]) {
                             int temp = arr[j-1];
                             arr[j-1] = arr[i];
@@ -60,6 +60,13 @@ public class Q3_RemoveDuplicates {
                 }
             }
         }
+
+        ArrayList<Integer> remove_dupe = new ArrayList<Integer>();
+        remove_dupe.add(arr[0]);
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i] != arr[i-1]) remove_dupe.add(arr[i]);
+
+        return remove_dupe;
     }
 
     public static void main(String[] args) {
@@ -71,7 +78,6 @@ public class Q3_RemoveDuplicates {
         int[] array = new int[input.length];
         for (int i = 0; i < input.length; i++) array[i] = Integer.parseInt(input[i]);
 
-        filter(array);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(filter(array).toArray()));
     }
 }
