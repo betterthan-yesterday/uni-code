@@ -6,6 +6,8 @@
 
  */
 
+import java.util.Random;
+
 // the class of Dice to play
 class Dice {
     private int num_faces;
@@ -18,6 +20,8 @@ class Dice {
     // (5 marks)
     public int rollDice() {
         /* place your code here */
+        Random rand = new Random();
+        return rand.nextInt(num_faces+1) + 1;
     }
 }
 
@@ -41,6 +45,28 @@ class Gambler {
     // (20 marks)
     static boolean gambling(Gambler gambler_1, Gambler gambler_2, int stake) {
         /* place your code here */
+        if (gambler_1.money < stake | gambler_2.money < stake) return false;
+
+        int roll_1;
+        int roll_2;
+        do {
+            roll_1 = gambler_1.die.rollDice();
+            roll_2 = gambler_2.die.rollDice();
+
+            if (roll_2 > roll_1) {
+                gambler_2.money += stake / 2;
+                gambler_1.money -= stake / 2;
+                System.out.printf("Gambler 1 roll: %d, Gambler 2 roll: %d: Gambler 2 wins\n", roll_1, roll_2);
+            } else if (roll_1 > roll_2) {
+                gambler_1.money += stake / 2;
+                gambler_2.money -= stake / 2;
+                System.out.printf("Gambler 1 roll: %d, Gambler 2 roll: %d: Gambler 1 wins\n", roll_1, roll_2);
+            } else {
+                System.out.printf("Gambler 1 roll: %d, Gambler 2 roll: %d: Re-roll\n", roll_1, roll_2);
+            }
+        } while (roll_2 == roll_1) ;
+
+        return true;
     }
 }
 
@@ -52,6 +78,11 @@ public class Q1_DiceGambling {
     // (15 marks)
     public static void keepGambling(Gambler gambler_1, Gambler gambler_2, int stake, int max_gambling_times) {
         /* place your code here */
+        int count = 0;
+        while (gambler_1.gambling(gambler_1, gambler_2, stake) & count != max_gambling_times) {
+            System.out.printf("Gambler 1 money: %d, Gambler 2 money: %d\n", gambler_1.money, gambler_2.money);
+            count++;
+        }
     }
 
     public static void main(String[] args) {
