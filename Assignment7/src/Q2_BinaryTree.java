@@ -38,6 +38,7 @@ class Q2_BinaryTree {
     // (5 marks)
     Q2_BinaryTree () {
         /* place your code here */
+        root = null;
     }
 
     // addChild() adds 'child_node' as a child of the 'parent_node'.
@@ -47,6 +48,8 @@ class Q2_BinaryTree {
     // (20 marks)
     public void addChild(Node parent_node, Node child_node, boolean is_left){
         /* place your code here */
+        if (is_left & parent_node.left == null) parent_node.left = child_node;
+        if (!is_left & parent_node.right == null) parent_node.right = child_node;
     }
 
     // deleteChild() deletes a child of teh 'parent_node'.
@@ -56,6 +59,8 @@ class Q2_BinaryTree {
     // (20 marks)
     public void deleteChild(Node parent_node, boolean is_left) {
         /* place your code here */
+        if (is_left & parent_node.left != null) parent_node.left = null;
+        if (!is_left & parent_node.right != null) parent_node.right = null;
     }
 
     // This method is for TA's use.
@@ -75,7 +80,18 @@ class Q2_BinaryTree {
 
     public static void main(String[] args) {
         /* place your code here to build Tree A (10 marks) */
+        Q2_BinaryTree tree = new Q2_BinaryTree();
+        tree.root = new Node(50);
+        tree.addChild(tree.root, new Node(30), true);
+        tree.addChild(tree.root, new Node(70), false);
+        tree.addChild(tree.root.left, new Node(20), true);
+        tree.addChild(tree.root.left, new Node(40), false);
+        tree.addChild(tree.root.right, new Node(60), true);
+        tree.addChild(tree.root.right, new Node(80), false);
+        tree.printTree();
 
         /* place your code here to convert Tree A into Tree B (5 marks) */
+        tree.deleteChild(tree.root.left, true);
+        tree.printTree();
     }
 }
