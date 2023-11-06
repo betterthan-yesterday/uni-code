@@ -90,27 +90,23 @@ class Q2_LinkedList {
     // (15 marks)
     void sortLinkedList(Node head) {
         /* place your code here */
-        Node head_temp;
         boolean sorted = false;
+        Node head_temp;
 
         while (!sorted) {
             sorted = true;
             head_temp = head;
 
-            while (head_temp.next != null) {
-                if (head_temp.data > head_temp.next.data) {
-                    Node next_temp = head_temp.next;
-                    head_temp.next = head_temp.next.next;
-                    next_temp.next = head_temp;
-                    head = next_temp;
-
-                    System.out.println(head.data);
-                    System.out.println(head.next.data);
-                    System.out.println(head.next.next.data);
-                    System.out.println(head.next.next.next.data);
+            while (head_temp != null && head_temp.next != null) {
+                Node next_temp = head_temp.next;
+                if (head_temp.data > next_temp.data) {
+                    int data_temp = head_temp.data;
+                    head_temp.data = next_temp.data;
+                    next_temp.data = data_temp;
 
                     sorted = false;
                 }
+
                 head_temp = head_temp.next;
             }
         }
