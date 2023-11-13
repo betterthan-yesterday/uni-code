@@ -19,16 +19,31 @@ public class Q2_TraverseTree extends BinTree.A2_BinaryTree {
     // Given a binary tree, print its nodes according to the "bottom-up" postorder traversal.
     void printPostorder(Node node) {
         /* place your code here */
+        if (node != null) {
+            printPostorder(node.left);
+            printPostorder(node.right);
+            System.out.println(node.key);
+        }
     }
 
     // Given a binary tree, print its nodes in inorder
     void printInorder(Node node) {
         /* place your code here */
+        if (node != null) {
+            printInorder(node.left);
+            System.out.println(node.key);
+            printInorder(node.right);
+        }
     }
 
     // Given a binary tree, print its nodes in preorder
     void printPreorder(Node node) {
         /* place your code here */
+        if (node != null) {
+            System.out.println(node.key);
+            printPreorder(node.left);
+            printPreorder(node.right);
+        }
     }
 
     public static void main(String[] args) {
