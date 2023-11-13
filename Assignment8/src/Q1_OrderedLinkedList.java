@@ -19,7 +19,36 @@ public class Q1_OrderedLinkedList extends LKList.A2_LinkedList{
     {
         System.out.println("Running insertion sort of A1_OrderedLinkedList ...");
         /* place your code here */
+        boolean sorted = false;
+        while (!sorted) {
+            sorted = true;
 
+            Node prev_node = null;
+            Node temp_head = headref;
+            while (temp_head != null) {
+                if (prev_node != null && temp_head.data < prev_node.data) {
+                    prev_node.next = temp_head.next;
+
+                    Node temp_head2 = headref;
+                    while (true) {
+                        if (temp_head.data < temp_head2.data) {
+                            insertAtBeginning(temp_head.data);
+                            sorted = false;
+                            break;
+                        } else if (temp_head.data > temp_head2.data && temp_head.data < temp_head2.next.data) {
+                            temp_head.next = temp_head2.next;
+                            temp_head2.next = temp_head;
+                            sorted = false;
+                            break;
+                        }
+                        temp_head2 = temp_head2.next;
+                    }
+                    break;
+                }
+                prev_node = temp_head;
+                temp_head = temp_head.next;
+            }
+        }
     }
 
     // Use the following method to implement orderedInsert().
@@ -28,7 +57,20 @@ public class Q1_OrderedLinkedList extends LKList.A2_LinkedList{
     // (15 marks)
     public void orderedInsert(Node newnode) {
         /* place your code here */
-
+        Node temp_head = head;
+        while (true) {
+            if (newnode.data < head.data) {
+                insertAtBeginning(newnode.data);
+                break;
+            }  else if (temp_head.next == null) {
+                insertAtEnd(newnode.data);
+                break;
+            }  else if (newnode.data > temp_head.data && newnode.data <= temp_head.next.data) {
+                insertAfter(temp_head, newnode.data);
+                break;
+            }
+            temp_head = temp_head.next;
+        }
     }
 
     public static void main (String args[]) {
