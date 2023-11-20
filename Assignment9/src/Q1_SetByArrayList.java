@@ -26,7 +26,7 @@ class m_SetByArrayList<E> implements Set<E> {
     // You can ONLY modify the body of this method including the return statement.
     @Override
     public boolean isEmpty() {
-        return false;
+        return m_arraylist.isEmpty();
     }
 
     // Question 1.3 (5 marks): implement method contains()
@@ -41,7 +41,7 @@ class m_SetByArrayList<E> implements Set<E> {
     @Override
     public boolean contains(Object o) {
         E object_in_class_E = (E) o; // Hint for the assignment, this converts class Object to a class E
-        return false;
+        return m_arraylist.contains(object_in_class_E);
     }
 
     // Question 1.4 (10 marks): implement method add()
@@ -54,7 +54,9 @@ class m_SetByArrayList<E> implements Set<E> {
     // You can ONLY modify the body of this method including the return statement.
     @Override
     public boolean add(E e) {
-        return false;
+        if (m_arraylist.contains(e)) return false;
+        m_arraylist.add(e);
+        return true;
     }
 
     // Question 1.5 (10 marks): implement method remove()
@@ -66,7 +68,9 @@ class m_SetByArrayList<E> implements Set<E> {
     @Override
     public boolean remove(Object o) {
         E object_in_class_E = (E) o; // Hint for the assignment, this converts class Object to a class E
-        return false;
+        if (!m_arraylist.contains(object_in_class_E)) return false;
+        m_arraylist.remove(object_in_class_E);
+        return true;
     }
 
     // Question 1.6 (5 marks): implement method clear()
@@ -74,7 +78,7 @@ class m_SetByArrayList<E> implements Set<E> {
     // You can ONLY modify the body of this method including the return statement.
     @Override
     public void clear() {
-
+        m_arraylist.clear();
     }
 
 
