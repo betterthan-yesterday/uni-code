@@ -5,7 +5,8 @@
     you cannot use JCF provided set.
  */
 
-import java.util.Set;
+import java.util.Arrays;
+import java.util.Objects;
 
 class m_SetByArray {
     // Use m_array to store all the items in the set.
@@ -18,14 +19,14 @@ class m_SetByArray {
     // Returns the number of elements in this set (its cardinality).
     // You can ONLY modify the body of this method including the return statement.
     public int size() {
-        return 0;
+        return number_of_items;
     }
 
     // Question 2.2 (5 marks): implement method isEmpty()
     // Returns true if this set contains no elements, otherwise return false.
     // You can ONLY modify the body of this method including the return statement.
     public boolean isEmpty() {
-        return false;
+        return size() == 0;
     }
 
     // Question 2.3 (10 marks): implement method contains()
@@ -38,6 +39,7 @@ class m_SetByArray {
     */
     // You can ONLY modify the body of this method including the return statement.
     public boolean contains(Integer o) {
+        for (int i = 0; i < number_of_items; i++) if (Objects.equals(m_array[i], o)) return true;
         return false;
     }
 
@@ -50,7 +52,11 @@ class m_SetByArray {
      */
     // You can ONLY modify the body of this method including the return statement.
     public boolean add(Integer e) {
-        return false;
+        if (contains(e)) return false;
+
+        m_array[number_of_items] = e;
+        number_of_items++;
+        return true;
     }
 
     // Question 2.5 (15 marks): implement method remove()
@@ -60,19 +66,31 @@ class m_SetByArray {
      */
     // You can ONLY modify the body of this method including the return statement.
     public boolean remove(Integer o) {
-        return false;
+        if (!contains(o)) return false;
+
+        for (int i = 0; i < number_of_items; i++) {
+            if (Objects.equals(m_array[i], o)) for (int j = i; j < number_of_items-1; j++) m_array[j] = m_array[j+1];
+        }
+        number_of_items--;
+        return true;
     }
 
     // Question 2.6 (5 marks): implement method clear()
     /* Removes all of the elements from this set. The set will be empty after this call returns. */
     // You can ONLY modify the body of this method including the return statement.
     public void clear() {
-
+        m_array = new Integer[100];
+        number_of_items = 0;
     }
 
     // Question 2.7 (5 marks): print the set items
     public void printSet() {
-
+        System.out.println("Print set as: ");
+        System.out.print("[");
+        for (int i = 0; i < number_of_items; i++){
+            System.out.print("" + m_array[i] + ", ");
+        }
+        System.out.println("]");
     }
 }
 
