@@ -1,5 +1,7 @@
 package mutils;
 
+import java.util.ArrayList;
+
 public class BinarySearchTree {
 
     // instance variable
@@ -8,6 +10,25 @@ public class BinarySearchTree {
     // constructor for initialise the root to null BYDEFAULT
     public BinarySearchTree() {
         this.root = null;
+    }
+
+    // method to get size
+    public int size(Node root) {
+        if (root == null) return 0;
+        return size(root.left) + size(root.right) + 1;
+    }
+
+    // method to get key
+    public int get(Node root, String key) {
+        if (root == null) return -1;
+
+        if (root.data.compareTo(key) > 0) {
+            // if current root data is greater than the new data then now process the left sub-tree
+            return get(root.left, key);
+        } else if (root.data.compareTo(key) < 0) {
+            // if current root data is less than the new data then now process the right sub-tree
+            return get(root.right, key);
+        } else return root.freq;
     }
 
     // insert method to insert the new node
@@ -27,25 +48,30 @@ public class BinarySearchTree {
         else if (root.compareTo(new_node) > 0) {
             // if current root data is greater than the new data then now process the left sub-tree
             root.left = insert(root.left, new_node);
-        } else {
+        } else if (root.compareTo(new_node) < 0) {
             // if current root data is less than the new data then now process the right sub-tree
             root.right = insert(root.right, new_node);
+        } else {
+            new_node.left = root.left;
+            new_node.right = root.right;
+            root = new_node;
         }
         return root;
     }
 
     //Traversal
-    public void inorder() {
-        inorder(root);
+    public void getKeysInorder(ArrayList<String> list) {
+        getKeysInorder(list, root);
     }
 
-    public void inorder(Node root) {
+    public ArrayList<String> getKeysInorder(ArrayList<String> list, Node root) {
         if (root == null) {
-            return;
+            return list;
         }
-        inorder(root.left);
-        System.out.print(root.data + " ");
-        inorder(root.right);
+        getKeysInorder(list, root.left);
+        list.add(root.data);
+        getKeysInorder(list, root.right);
+        return list;
     }
 
     /*
